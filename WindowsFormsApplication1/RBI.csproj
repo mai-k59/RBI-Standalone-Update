@@ -395,7 +395,6 @@
     <Compile Include="Object\ucTabNormal.cs" />
     <Compile Include="Object\ucTabTank.cs" />
     <Compile Include="PRE\ITEM\jtree.cs" />
-    <Compile Include="PRE\subForm\InputDataForm\BUS_UNIT.cs" />
     <Compile Include="PRE\subForm\InputDataForm\frmUnits.cs">
       <SubType>Form</SubType>
     </Compile>

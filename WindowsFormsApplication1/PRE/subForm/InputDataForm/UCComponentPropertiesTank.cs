@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using RBI.Object.ObjectMSSQL;
 using RBI.BUS.BUSMSSQL;
 using RBI.Object;
+using RBI.BUS.BUSMSSQL_CAL;
 
 namespace RBI.PRE.subForm.InputDataForm
 {
@@ -20,14 +21,10 @@ namespace RBI.PRE.subForm.InputDataForm
         string[] itemsComplexityProtrusion = { "Above average", "Average", "Below average" };
         private int datachange = 0;
         private int ctrlSpress = 0;
-        public UCComponentPropertiesTank()
+        public UCComponentPropertiesTank(int ID, string type, string diameterUnit, string thicknessUnit, string corrosionRateUnit)
         {
             InitializeComponent();
-        }
-        public UCComponentPropertiesTank(int ID, string type)
-        {
-            InitializeComponent();
-            ShowDataToControl(ID);
+            ShowDataToControl(ID, diameterUnit, thicknessUnit, corrosionRateUnit);
             if (type == "Shell")
             {
                 chkConcreteAsphalt.Enabled = false;
@@ -35,22 +32,46 @@ namespace RBI.PRE.subForm.InputDataForm
             }
             else
                 txtShellCourseHeight.Enabled = false;
+            lblDiameter.Text = diameterUnit;
+            lblCurrentThickness.Text = lblNominalThickness.Text = lblMinReqThickness.Text = thicknessUnit;
+            lblCorrosionRate.Text = corrosionRateUnit;
         }
-        private void ShowDataToControl(int ID)
+        private void ShowDataToControl(int ID, string diameter, string thickness, string corrosionRate)
         {
             RW_COMPONENT_BUS busCom = new RW_COMPONENT_BUS();
             RW_COMPONENT com = busCom.getData(ID);
-            txtTankDiameter.Text = com.NominalDiameter.ToString();
-            txtCurrentThickness.Text = com.CurrentThickness.ToString();
-            txtCurrentCorrosionRate.Text = com.CurrentCorrosionRate.ToString();
+            BUS_UNITS convUnit = new BUS_UNITS();
+            if (diameter == "in") txtTankDiameter.Text = (com.NominalDiameter/ convUnit.inch).ToString(); // converst mm sang in
+            else if (diameter == "mm") txtTankDiameter.Text = com.NominalDiameter.ToString(); // giữ nguyên
+            else txtTankDiameter.Text = (com.NominalDiameter / 1000).ToString(); // converst mm sang m
+
+            if (thickness == "mm")
+            {
+                txtNominalThickness.Text = com.NominalThickness.ToString(); //giữ nguyên
+                txtCurrentThickness.Text = com.CurrentThickness.ToString();// giữ nguyên
+                txtMinRequiredThickness.Text = com.MinReqThickness.ToString();//  giữ nguyên
+            }
+            else if (thickness == "in")
+            {
+                txtNominalThickness.Text = (com.NominalThickness / convUnit.inch).ToString(); //converst mm sang in
+                txtCurrentThickness.Text = (com.CurrentThickness / convUnit.inch).ToString(); //converst mm sang in
+                txtMinRequiredThickness.Text = (com.MinReqThickness / convUnit.inch).ToString(); //converst mm sang in
+            }
+            else
+            {
+                txtNominalThickness.Text = (com.NominalThickness / 1000).ToString(); // converst mm sang m
+                txtCurrentThickness.Text = (com.CurrentThickness / 1000).ToString(); // converst mm sang m
+                txtMinRequiredThickness.Text = (com.MinReqThickness / 1000).ToString(); // converst mm sang m
+            }
+
+            if (corrosionRate == "mm/yr") txtCurrentCorrosionRate.Text = com.CurrentCorrosionRate.ToString(); // converst mm sang mm
+            else txtCurrentCorrosionRate.Text = (com.CurrentCorrosionRate / convUnit.mil).ToString(); // converst mm sang mil
             txtShellCourseHeight.Text = com.ShellHeight.ToString();
-            txtNominalThickness.Text = com.NominalThickness.ToString();
             chkDamageFoundDuringInspection.Checked = com.DamageFoundInspection == 1 ? true : false;
             chkConcreteAsphalt.Checked = com.ConcreteFoundation == 1 ? true : false;
             chkPresenceCracks.Checked = com.CracksPresent == 1 ? true : false;
             chkPreventionBarrier.Checked = com.ReleasePreventionBarrier == 1 ? true : false;
             chkTrampElements.Checked = com.TrampElements == 1 ? true : false;
-            txtMinRequiredThickness.Text = com.MinReqThickness.ToString();
             for(int i = 0; i<itemsBrinnellHardness.Length;i++)
             {
                 if(itemsBrinnellHardness[i] == com.BrinnelHardness)
@@ -76,15 +97,39 @@ namespace RBI.PRE.subForm.InputDataForm
                 }
             }
         }
-        public RW_COMPONENT getData(int ID)
+        public RW_COMPONENT getData(int ID, string diameter, string thickness, string corrosionRate)
         {
             RW_COMPONENT comp = new RW_COMPONENT();
             comp.ID = ID;
-            comp.NominalDiameter = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) : 0;
-            comp.NominalThickness = txtNominalThickness.Text != "" ? float.Parse(txtNominalThickness.Text) : 0;
-            comp.CurrentThickness = txtCurrentThickness.Text != "" ? float.Parse(txtCurrentThickness.Text) : 0;
-            comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? float.Parse(txtMinRequiredThickness.Text) : 0;
-            comp.CurrentCorrosionRate = txtCurrentCorrosionRate.Text != "" ? float.Parse(txtCurrentCorrosionRate.Text) : 0;
+            BUS_UNITS convUnit = new BUS_UNITS();
+            if (diameter == "mm") comp.NominalDiameter = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) : 0;
+            else if (diameter == "in") comp.NominalDiameter = txtTankDiameter.Text != "" ? (float)(double.Parse(txtTankDiameter.Text) * convUnit.inch) : 0; // in sang mm
+            else comp.NominalDiameter = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) * 1000 : 0; // m sang mm
+            //comp.NominalDiameter = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) : 0;
+            if (thickness == "mm")
+            {
+                comp.NominalThickness = txtNominalThickness.Text != "" ? float.Parse(txtNominalThickness.Text) : 0;
+                comp.CurrentThickness = txtCurrentThickness.Text != "" ? float.Parse(txtCurrentThickness.Text) : 0;
+                comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? float.Parse(txtMinRequiredThickness.Text) : 0;
+            }
+            else if (thickness == "in")
+            {
+                comp.NominalThickness = txtNominalThickness.Text != "" ? (float)(double.Parse(txtNominalThickness.Text) * convUnit.inch) : 0; // in sang mm
+                comp.CurrentThickness = txtCurrentThickness.Text != "" ? (float)(double.Parse(txtCurrentThickness.Text) * convUnit.inch) : 0; // in sang mm
+                comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? (float)(double.Parse(txtMinRequiredThickness.Text) * convUnit.inch) : 0;// in sang mm
+            }
+            else
+            {
+                comp.NominalThickness = txtNominalThickness.Text != "" ? (float)(double.Parse(txtNominalThickness.Text) * 1000) : 0; // m sang mm
+                comp.CurrentThickness = txtCurrentThickness.Text != "" ? (float)(double.Parse(txtCurrentThickness.Text) * 1000) : 0; // m sang mm
+                comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? (float)(double.Parse(txtMinRequiredThickness.Text) * 1000) : 0;// m sang mm
+            }
+            //comp.NominalThickness = txtNominalThickness.Text != "" ? float.Parse(txtNominalThickness.Text) : 0;
+            //comp.CurrentThickness = txtCurrentThickness.Text != "" ? float.Parse(txtCurrentThickness.Text) : 0;
+            //comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? float.Parse(txtMinRequiredThickness.Text) : 0;
+            if (corrosionRate == "mm/yr") comp.CurrentCorrosionRate = txtCurrentCorrosionRate.Text != "" ? (float)double.Parse(txtCurrentCorrosionRate.Text) : 0;
+            else comp.CurrentCorrosionRate = txtCurrentCorrosionRate.Text != "" ? (float)(double.Parse(txtCurrentCorrosionRate.Text) * convUnit.mil) : 0; // mil/yr sang mm/yr
+            //comp.CurrentCorrosionRate = txtCurrentCorrosionRate.Text != "" ? float.Parse(txtCurrentCorrosionRate.Text) : 0;
             comp.BrinnelHardness = cbMaxBrillnessHardness.Text;
             comp.SeverityOfVibration = cbSeverityVibration.Text;
             comp.ComplexityProtrusion = cbComplexityProtrusion.Text;
@@ -100,10 +145,14 @@ namespace RBI.PRE.subForm.InputDataForm
             return comp;
         }
 
-        public RW_INPUT_CA_TANK getDataforTank(int ID)
+        public RW_INPUT_CA_TANK getDataforTank(int ID, string diameter)
         {
             RW_INPUT_CA_TANK tank = new RW_INPUT_CA_TANK();
+            BUS_UNITS convUnit = new BUS_UNITS();
             tank.ID = ID;
+            if (diameter == "mm") tank.TANK_DIAMETTER = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) : 0;
+            else if (diameter == "in") tank.TANK_DIAMETTER = txtTankDiameter.Text != "" ? (float)(double.Parse(txtTankDiameter.Text) * convUnit.inch) : 0; // in sang mm
+            else tank.TANK_DIAMETTER = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) * 1000 : 0; // m sang mm
             tank.TANK_DIAMETTER = txtTankDiameter.Text != "" ? float.Parse(txtTankDiameter.Text) : 0;
             tank.Prevention_Barrier = chkPreventionBarrier.Checked ? 1 : 0;
             tank.SHELL_COURSE_HEIGHT = txtShellCourseHeight.Text != "" ? float.Parse(txtShellCourseHeight.Text) : 0;

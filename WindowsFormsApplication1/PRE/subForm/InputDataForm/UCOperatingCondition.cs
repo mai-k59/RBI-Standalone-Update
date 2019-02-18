@@ -16,20 +16,16 @@ namespace RBI.PRE.subForm.InputDataForm
 {
     public partial class UCOperatingCondition : UserControl
     {
-        public UCOperatingCondition()
-        {
-            InitializeComponent();
-        }
-        public UCOperatingCondition(int ID)
-        {
-            InitializeComponent();
-            //getData(ID);
-        }
-        //mai mai
         public UCOperatingCondition(int ID, string temperatureUnit, string pressureUnit, string flowRateUnit)
         {
             InitializeComponent();
             ShowDataToForm(ID, temperatureUnit, pressureUnit, flowRateUnit);
+            changeUnit(temperatureUnit, pressureUnit, flowRateUnit);
+        }
+
+        #region change unit
+        private void changeUnit(string temperatureUnit, string pressureUnit, string flowRateUnit)
+        {
             switch (temperatureUnit)
             {
                 case "DEG_C":
@@ -38,43 +34,55 @@ namespace RBI.PRE.subForm.InputDataForm
                     lbOp2.Text = "% Operating at -8 ⁰C to 6 ⁰C";
                     lbOp3.Text = "% Operating at 6 ⁰C to 32 ⁰C";
                     lbOp4.Text = "% Operating at 32 ⁰C to 71⁰C";
-                    lbOp5.Text = "% Operating at 71⁰C to 107⁰C";
-                    lbOp6.Text = "% Operating at 107⁰C to 121⁰C";
-                    lbOp7.Text = "% Operating at 121⁰C to 135⁰C";
-                    lbOp8.Text = "% Operating at 135⁰C to 162⁰C";
-                    lbOp9.Text = "% Operating at 162⁰C to 176⁰C";
-                    lbOp10.Text = "% Operating at 176⁰C or above";
+                    lbOp5.Text = "% Operating at 71 ⁰C to 107 ⁰C";
+                    lbOp6.Text = "% Operating at 107 ⁰C to 121 ⁰C";
+                    lbOp7.Text = "% Operating at 121 ⁰C to 135 ⁰C";
+                    lbOp8.Text = "% Operating at 135 ⁰C to 162 ⁰C";
+                    lbOp9.Text = "% Operating at 162 ⁰C to 176 ⁰C";
+                    lbOp10.Text = "% Operating at 176 ⁰C or above";
                     break;
                 case "DEG_F":
                     lblCritExpoTem.Text = lblmaxOpTem.Text = lblMinOpTem.Text = "⁰F";
-                    lbOp1.Text = "% Operating at 10.4 ⁰F to 17.6 ⁰F";
-                    lbOp2.Text = "% Operating at 17.6 ⁰F to 42.8 ⁰F";
-                    lbOp3.Text = "% Operating at 42.8 ⁰F to 89.6 ⁰F";
-                    lbOp4.Text = "% Operating at 89.6 ⁰F to 159.8 ⁰F";
-                    lbOp5.Text = "% Operating at 159.8 ⁰F to 224.6 ⁰F";
-                    lbOp6.Text = "% Operating at 224.6 ⁰F to 249.8 ⁰F";
-                    lbOp7.Text = "% Operating at 249.8 ⁰F to 275 ⁰F";
-                    lbOp8.Text = "% Operating at 275 ⁰F to 323.6 ⁰F";
-                    lbOp9.Text = "% Operating at 232.6 ⁰F to 348.8 ⁰F";
-                    lbOp10.Text = "% Operating at 348.8 ⁰F or above";
+                    lbOp1.Text = "% Operating at 10 ⁰F to 18 ⁰F";
+                    lbOp2.Text = "% Operating at 18 ⁰F to 43 ⁰F";
+                    lbOp3.Text = "% Operating at 43 ⁰F to 90 ⁰F";
+                    lbOp4.Text = "% Operating at 90 ⁰F to 160 ⁰F";
+                    lbOp5.Text = "% Operating at 160 ⁰F to 225 ⁰F";
+                    lbOp6.Text = "% Operating at 225 ⁰F to 250 ⁰F";
+                    lbOp7.Text = "% Operating at 250 ⁰F to 275 ⁰F";
+                    lbOp8.Text = "% Operating at 275 ⁰F to 325 ⁰F";
+                    lbOp9.Text = "% Operating at 325 ⁰F to 350 ⁰F";
+                    lbOp10.Text = "% Operating at 350 ⁰F or above";
                     break;
                 case "K":
                     lblCritExpoTem.Text = lblmaxOpTem.Text = lblMinOpTem.Text = "K";
-                    lbOp1.Text = "% Operating at 261 ⁰K to 265 ⁰K";
-                    lbOp2.Text = "% Operating at 265 ⁰K to 279 ⁰K";
-                    lbOp3.Text = "% Operating at 279 ⁰K to 305 ⁰K";
-                    lbOp4.Text = "% Operating at 305 ⁰K to 344 ⁰K";
-                    lbOp5.Text = "% Operating at 344 ⁰K to 380 ⁰K";
-                    lbOp6.Text = "% Operating at 380 ⁰K to 394 ⁰K";
-                    lbOp7.Text = "% Operating at 394 ⁰K to 408 ⁰K";
-                    lbOp8.Text = "% Operating at 408 ⁰K to 435 ⁰K";
-                    lbOp9.Text = "% Operating at 435 ⁰K to 449 ⁰K";
-                    lbOp10.Text = "% Operating at 449 ⁰K or above";
+                    lbOp1.Text = "% Operating at 261 K to 265 K";
+                    lbOp2.Text = "% Operating at 265 K to 279 K";
+                    lbOp3.Text = "% Operating at 279 K to 305 K";
+                    lbOp4.Text = "% Operating at 305 K to 344 K";
+                    lbOp5.Text = "% Operating at 344 K to 380 K";
+                    lbOp6.Text = "% Operating at 380 K to 394 K";
+                    lbOp7.Text = "% Operating at 394 K to 408 K";
+                    lbOp8.Text = "% Operating at 408 K to 435 K";
+                    lbOp9.Text = "% Operating at 435 K to 449 K";
+                    lbOp10.Text = "% Operating at 449 K or above";
+                    break;
+            }            
+            switch(flowRateUnit)
+            {
+                case "ft3/hr":
+                    lblFlowRate.Text = "ft³/hr";
+                    break;
+                case "m3/hr":
+                    lblFlowRate.Text = "m³/hr";
                     break;
             }
-            lblMinOpPressure.Text = lblMaxOpPressure.Text = lblHydroPressure.Text = pressureUnit;
-            lblFlowRate.Text = flowRateUnit;
+            if (pressureUnit == "N/m2") lblMinOpPressure.Text = lblMaxOpPressure.Text = lblHydroPressure.Text = "N/m²";
+            else if (pressureUnit == "N/cm2") lblMinOpPressure.Text = lblMaxOpPressure.Text = lblHydroPressure.Text = "N/cm²";
+            else lblMinOpPressure.Text = lblMaxOpPressure.Text = lblHydroPressure.Text = pressureUnit;
         }
+        #endregion
+        #region Process Data
         RW_EXTCOR_TEMPERATURE objTemp = new RW_EXTCOR_TEMPERATURE();
         private void ShowDataToForm(int ID, string temperatureUnit, string pressureUnit, string flowRateUnit)
         {
@@ -83,6 +91,67 @@ namespace RBI.PRE.subForm.InputDataForm
             RW_STREAM objSteam = SteamBus.getData(ID);
             RW_EXTCOR_TEMPERATURE extTemp = tempBus.getData(ID);
             BUS_UNITS convUnit = new BUS_UNITS();
+            switch(temperatureUnit)
+            {
+                case "DEG_C":
+                    txtMaximumOperatingTemp.Text = objSteam.MaxOperatingTemperature.ToString();
+                    txtMinimumOperatingTemp.Text = objSteam.MinOperatingTemperature.ToString();
+                    txtCriticalExposure.Text = objSteam.CriticalExposureTemperature.ToString();
+                    break;
+                case "DEG_F":
+                    txtMaximumOperatingTemp.Text = convUnit.CelToFah(objSteam.MaxOperatingTemperature).ToString();
+                    txtMinimumOperatingTemp.Text = convUnit.CelToFah(objSteam.MinOperatingTemperature).ToString();
+                    txtCriticalExposure.Text = convUnit.CelToFah(objSteam.CriticalExposureTemperature).ToString();
+                    Console.WriteLine("Hha");
+                    break;
+                case "K":
+                    txtMaximumOperatingTemp.Text = convUnit.CelToKenvin(objSteam.MaxOperatingTemperature).ToString();
+                    txtMinimumOperatingTemp.Text = convUnit.CelToKenvin(objSteam.MinOperatingTemperature).ToString();
+                    txtCriticalExposure.Text = convUnit.CelToKenvin(objSteam.CriticalExposureTemperature).ToString();
+                    break;
+            }
+            switch(pressureUnit)
+            {
+                case "psi":
+                    txtMaxOperatingPressure.Text = objSteam.MaxOperatingPressure.ToString();
+                    txtMinOperatingPressure.Text = objSteam.MinOperatingPressure.ToString();
+                    txtOperatingHydrogen.Text = objSteam.H2SPartialPressure.ToString();
+                    break;
+                case "KSI":
+                    txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure / convUnit.ksi).ToString();
+                    txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.ksi).ToString();
+                    txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.ksi).ToString();
+                    break;
+                case "bar":
+                    txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure / convUnit.bar).ToString();
+                    txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.bar).ToString();
+                    txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.bar).ToString();
+                    break;
+                case "MPa":
+                    txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure / convUnit.MPa).ToString();
+                    txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.MPa).ToString();
+                    txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.MPa).ToString();
+                    break;
+                case "N/m2":
+                    txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure / convUnit.NpM2).ToString();
+                    txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.NpM2).ToString();
+                    txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.NpM2).ToString();
+                    break;
+                case "N/cm2":
+                    txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure / convUnit.NpCM2).ToString();
+                    txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.NpCM2).ToString();
+                    txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.NpCM2).ToString();
+                    break;
+            }
+            switch(flowRateUnit)
+            {
+                case "ft3/hr":
+                    txtFlowRate.Text = (objSteam.FlowRate / convUnit.ft3).ToString();
+                    break;
+                case "m3/hr":
+                    txtFlowRate.Text = objSteam.FlowRate.ToString();
+                    break;
+            }
 
             txtOp12.Text = extTemp.Minus12ToMinus8.ToString();
             txtOp8.Text = extTemp.Minus8ToPlus6.ToString();
@@ -94,151 +163,70 @@ namespace RBI.PRE.subForm.InputDataForm
             txtOp135.Text = extTemp.Plus135ToPlus162.ToString();
             txtOp162.Text = extTemp.Plus162ToPlus176.ToString();
             txtOp176.Text = extTemp.MoreThanPlus176.ToString();
-            if (temperatureUnit == "DEG_C")
-            {
-                
-                txtMaximumOperatingTemp.Text = objSteam.MaxOperatingTemperature.ToString();
-                txtMinimumOperatingTemp.Text = objSteam.MinOperatingTemperature.ToString();
-                txtCriticalExposure.Text = objSteam.CriticalExposureTemperature.ToString();
-            }
-            else if (temperatureUnit == "DEG_F") // converst C sang F
-            {
-                
-                txtMaximumOperatingTemp.Text = convUnit.CelToFah(objSteam.MaxOperatingTemperature).ToString();
-                txtMinimumOperatingTemp.Text = convUnit.CelToFah(objSteam.MinOperatingTemperature).ToString();
-                txtCriticalExposure.Text = convUnit.CelToFah(objSteam.CriticalExposureTemperature).ToString();
-            }
-            else // converst C sang K
-            {
-
-                txtMaximumOperatingTemp.Text = convUnit.CelToKenvin(objSteam.MaxOperatingTemperature).ToString();
-                txtMinimumOperatingTemp.Text = convUnit.CelToKenvin(objSteam.MinOperatingTemperature).ToString();
-                txtCriticalExposure.Text = convUnit.CelToKenvin(objSteam.CriticalExposureTemperature).ToString();
-            }
-
-            switch (pressureUnit)
-            { 
-                case "psi": 
-                    {
-                        txtMaxOperatingPressure.Text = objSteam.MaxOperatingPressure.ToString();
-                        txtMinOperatingPressure.Text = objSteam.MinOperatingPressure.ToString();
-                        txtOperatingHydrogen.Text = objSteam.H2SPartialPressure.ToString();
-                    }
-                    break;
-                case "KSI": // psi sang ksi
-                    {
-                        txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure/convUnit.ksi).ToString();
-                        txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure/convUnit.ksi).ToString();
-                        txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.ksi).ToString();
-                    }
-                    break;
-                case "bar": // psi sang bar
-                    {
-                        txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure/convUnit.bar).ToString();
-                        txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure/convUnit.bar).ToString();
-                        txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.bar).ToString();
-                    }
-                    break;
-                case "MPa": // psi sang mpa
-                    {
-                        txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure/convUnit.MPa).ToString();
-                        txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.MPa).ToString();
-                        txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.MPa).ToString();
-                    }
-                    break;
-                case "N/m2": //psi sang N/m2
-                    {
-                        txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure/convUnit.NpM2).ToString();
-                        txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.NpM2).ToString();
-                        txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.NpM2).ToString();
-                    };
-                    break;
-                default: // psi sang N/cm2
-                    {
-                        txtMaxOperatingPressure.Text = (objSteam.MaxOperatingPressure/convUnit.NpCM2).ToString();
-                        txtMinOperatingPressure.Text = (objSteam.MinOperatingPressure / convUnit.NpCM2).ToString();
-                        txtOperatingHydrogen.Text = (objSteam.H2SPartialPressure / convUnit.NpCM2).ToString();
-                    }
-                    break;
-            }
-
-            if(flowRateUnit == "m3/hr") // giữ nguyên
-                txtFlowRate.Text = objSteam.FlowRate.ToString();
-                
-            else txtFlowRate.Text = (objSteam.FlowRate/convUnit.ft3).ToString();  // convert m3/hr sang ft3/h
-
-            
         }
-        //RW_EXTCOR_TEMPERATURE objTemp = new RW_EXTCOR_TEMPERATURE();
-
 
         public RW_STREAM getDataforStream(int ID, string temperatureUnit, string pressureUnit, string flowRateUnit)
         {
             RW_STREAM str = new RW_STREAM();
             BUS_UNITS convUnit = new BUS_UNITS();
-
-            str.ID = ID;
-            if (temperatureUnit == "DEG_C") // converst C sang C
+            str.ID = ID;            
+            if(flowRateUnit == "m3/hr")str.FlowRate = txtFlowRate.Text != "" ? float.Parse(txtFlowRate.Text) : 0;
+            else str.FlowRate = txtFlowRate.Text != "" ? float.Parse(txtFlowRate.Text) * (float)convUnit.ft3 : 0;
+            switch(temperatureUnit)
             {
-                str.MaxOperatingTemperature = txtMaximumOperatingTemp.Text != "" ? float.Parse(txtMaximumOperatingTemp.Text) : 0;
-                str.MinOperatingTemperature = txtMinimumOperatingTemp.Text != "" ? float.Parse(txtMinimumOperatingTemp.Text) : 0;
-                str.CriticalExposureTemperature = txtCriticalExposure.Text != "" ? float.Parse(txtCriticalExposure.Text) : 0;
+                case "DEG_C":
+                    str.MaxOperatingTemperature = txtMaximumOperatingTemp.Text != "" ? float.Parse(txtMaximumOperatingTemp.Text) : 0;
+                    str.MinOperatingTemperature = txtMinimumOperatingTemp.Text != "" ? float.Parse(txtMinimumOperatingTemp.Text) : 0;
+                    str.CriticalExposureTemperature = txtCriticalExposure.Text != "" ? float.Parse(txtCriticalExposure.Text) : 0;
+                    break;
+                case "DEG_F":
+                    str.MaxOperatingTemperature = txtMaximumOperatingTemp.Text != "" ? (float)convUnit.FahToCel(float.Parse(txtMaximumOperatingTemp.Text)) : 0;
+                    str.MinOperatingTemperature = txtMinimumOperatingTemp.Text != "" ? (float)convUnit.FahToCel(float.Parse(txtMinimumOperatingTemp.Text)) : 0;
+                    str.CriticalExposureTemperature = txtCriticalExposure.Text != "" ? (float)convUnit.FahToCel(float.Parse(txtCriticalExposure.Text)) : 0;
+                    break;
+                case "K":
+                    str.MaxOperatingTemperature = txtMaximumOperatingTemp.Text != "" ? (float)convUnit.KenvinToCel(float.Parse(txtMaximumOperatingTemp.Text)) : 0;
+                    str.MinOperatingTemperature = txtMinimumOperatingTemp.Text != "" ? (float)convUnit.KenvinToCel(float.Parse(txtMinimumOperatingTemp.Text)) : 0;
+                    str.CriticalExposureTemperature = txtCriticalExposure.Text != "" ? (float)convUnit.KenvinToCel(float.Parse(txtCriticalExposure.Text)) : 0;
+                    break;
             }
-            else if (temperatureUnit == "DEG_F") // converst F sang C
+            switch(pressureUnit)
             {
-                str.MaxOperatingTemperature = txtMaximumOperatingTemp.Text != "" ? (float)(convUnit.FahToCel(double.Parse(txtMaximumOperatingTemp.Text))) : 0;
-                str.MinOperatingTemperature = txtMinimumOperatingTemp.Text != "" ? (float)(convUnit.FahToCel(double.Parse(txtMinimumOperatingTemp.Text))) : 0;
-                str.CriticalExposureTemperature = txtCriticalExposure.Text != "" ? (float)(convUnit.FahToCel(double.Parse(txtCriticalExposure.Text))) : 0;
-            }
-            else // converst K sang C
-            {
-                str.MaxOperatingTemperature = txtMaximumOperatingTemp.Text != "" ? (float)(convUnit.KenvinToCel(double.Parse(txtMaximumOperatingTemp.Text))) : 0;
-                str.MinOperatingTemperature = txtMinimumOperatingTemp.Text != "" ? (float)(convUnit.KenvinToCel(double.Parse(txtMinimumOperatingTemp.Text))) : 0;
-                str.CriticalExposureTemperature = txtCriticalExposure.Text != "" ? (float)(convUnit.KenvinToCel(double.Parse(txtCriticalExposure.Text))) : 0;
-            }
-
-            switch (pressureUnit)
-            {
-                case "psi": // psi sang psi dua vao base
+                case "psi":
                     str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? float.Parse(txtMaxOperatingPressure.Text) : 0;
                     str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) : 0;
                     str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? float.Parse(txtOperatingHydrogen.Text) : 0;
                     break;
-                case "KSI": // ksi sang psi
-                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? (float)(double.Parse(txtMaxOperatingPressure.Text)*convUnit.ksi) : 0;
-                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? (float)(double.Parse(txtMinOperatingPressure.Text)*convUnit.ksi) : 0;
-                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? (float)(double.Parse(txtOperatingHydrogen.Text)*convUnit.ksi) : 0;
+                case "KSI":
+                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? float.Parse(txtMaxOperatingPressure.Text) * (float)convUnit.ksi : 0;
+                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.ksi : 0;
+                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? float.Parse(txtOperatingHydrogen.Text) * (float)convUnit.ksi : 0;
                     break;
-                case "bar": // bar sang psi
-                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? (float)(double.Parse(txtMaxOperatingPressure.Text)*convUnit.bar) : 0;
-                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? (float)(double.Parse(txtMinOperatingPressure.Text)*convUnit.bar) : 0;
-                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? (float)(double.Parse(txtOperatingHydrogen.Text)*convUnit.bar) : 0;
-                     break;
-                case "MPa": // mpa sang psi
-                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? (float)(double.Parse(txtMaxOperatingPressure.Text)*convUnit.MPa) : 0;
-                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? (float)(double.Parse(txtMinOperatingPressure.Text)*convUnit.MPa) : 0;
-                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? (float)(double.Parse(txtOperatingHydrogen.Text)*convUnit.MPa) : 0;
-                     break;
-                case "N/m2": //N/m2 sang psi
-                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? (float)(double.Parse(txtMaxOperatingPressure.Text)*convUnit.NpM2) : 0;
-                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? (float)(double.Parse(txtMinOperatingPressure.Text)*convUnit.NpM2) : 0;
-                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? (float)(double.Parse(txtOperatingHydrogen.Text)*convUnit.NpM2) : 0;
-                     break;
-                default: // N/cm2 sang psi
-                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? (float)(double.Parse(txtMaxOperatingPressure.Text)*convUnit.NpCM2) : 0;
-                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? (float)(double.Parse(txtMinOperatingPressure.Text)*convUnit.NpCM2) : 0;
-                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? (float)(double.Parse(txtOperatingHydrogen.Text) * convUnit.NpCM2) : 0;
-                     break;
-
+                case "bar":
+                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? float.Parse(txtMaxOperatingPressure.Text) * (float)convUnit.bar : 0;
+                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.bar : 0;
+                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? float.Parse(txtOperatingHydrogen.Text) * (float)convUnit.bar : 0;
+                    break;
+                case "MPa":
+                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? float.Parse(txtMaxOperatingPressure.Text) * (float)convUnit.MPa : 0;
+                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.MPa : 0;
+                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? float.Parse(txtOperatingHydrogen.Text) * (float)convUnit.MPa : 0;
+                    break;
+                case "NpM2":
+                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? float.Parse(txtMaxOperatingPressure.Text) * (float)convUnit.NpM2 : 0;
+                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.NpM2 : 0;
+                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? float.Parse(txtOperatingHydrogen.Text) * (float)convUnit.NpM2 : 0;
+                    break;
+                case "NpCM2":
+                    str.MaxOperatingPressure = txtMaxOperatingPressure.Text != "" ? float.Parse(txtMaxOperatingPressure.Text) * (float)convUnit.NpCM2 : 0;
+                    str.MinOperatingPressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.NpCM2 : 0;
+                    str.H2SPartialPressure = txtOperatingHydrogen.Text != "" ? float.Parse(txtOperatingHydrogen.Text) * (float)convUnit.NpCM2 : 0;
+                    break;
             }
-
-            if (flowRateUnit == "m3/hr") // giữ nguyên
-            str.FlowRate = txtFlowRate.Text != "" ? float.Parse(txtFlowRate.Text) : 0;
-            else str.FlowRate = txtFlowRate.Text != "" ? (float)(double.Parse(txtFlowRate.Text)*convUnit.ft3) : 0;  // convert ft3/hr sang m3/h
+           
             return str;
-
-
         }
+
         public RW_EXTCOR_TEMPERATURE getDataExtcorTemp(int ID)
         {
             RW_EXTCOR_TEMPERATURE ext = new RW_EXTCOR_TEMPERATURE();
@@ -255,14 +243,48 @@ namespace RBI.PRE.subForm.InputDataForm
             ext.MoreThanPlus176 = txtOp176.Text != "" ? float.Parse(txtOp176.Text) : 0;
             return ext;
         }
-        public RW_INPUT_CA_LEVEL_1 getDataforCA()
+
+        public RW_INPUT_CA_LEVEL_1 getDataforCA(int id, string temperatureUnit, string pressureUnit)//thao
         {
             RW_INPUT_CA_LEVEL_1 ca = new RW_INPUT_CA_LEVEL_1();
-            ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * 6.895f : 0;
-            ca.Stored_Temp = txtMinimumOperatingTemp.Text != "" ? float.Parse(txtMinimumOperatingTemp.Text) + 273 : 0;
+            BUS_UNITS convUnit = new BUS_UNITS();
+            ca.ID = id;
+            switch(temperatureUnit)
+            {
+                case "DEG_C":
+                    ca.Stored_Temp = txtMinimumOperatingTemp.Text != "" ? float.Parse(txtMinimumOperatingTemp.Text) + 273 : 0;
+                    break;
+                case "DEG_F":
+                    ca.Stored_Temp = txtMinimumOperatingTemp.Text != "" ? (float)convUnit.FahToCel(float.Parse(txtMinimumOperatingTemp.Text)) + 273 : 0;
+                    break;
+                case "K":
+                    ca.Stored_Temp = txtMinimumOperatingTemp.Text != "" ? (float)convUnit.KenvinToCel(float.Parse(txtMinimumOperatingTemp.Text)) + 273 : 0;
+                    break;
+            }
+            switch(pressureUnit)
+            {
+                case "psi":
+                    ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * 6.895f : 0;
+                    break;
+                case "KSI":
+                    ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.ksi * 6.895f : 0;
+                    break;
+                case "bar":
+                    ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.bar * 6.895f : 0;
+                    break;
+                case "MPa":
+                    ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.MPa * 6.895f : 0;
+                    break;
+                case "NpM2":
+                    ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.NpM2 * 6.895f : 0;
+                    break;
+                case "NpCM2":
+                    ca.Stored_Pressure = txtMinOperatingPressure.Text != "" ? float.Parse(txtMinOperatingPressure.Text) * (float)convUnit.NpCM2 * 6.895f : 0;
+                    break;
+            }
             return ca;
         }
-
+        #endregion
         #region KeyPress Event Handle
         private void keyPressEvent(TextBox textbox, KeyPressEventArgs ev, bool percent)
         {

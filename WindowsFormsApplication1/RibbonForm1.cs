@@ -237,8 +237,8 @@ namespace RBI
                     stream.H2SPartialPressure = op.H2SPartialPressure;
                     //</object stream>
                     RW_EXTCOR_TEMPERATURE extTemp = uc.ucOpera.getDataExtcorTemp(IDProposal);
-                    RW_COATING coat = uc.ucCoat.getData(IDProposal);
-                    RW_MATERIAL ma = uc.ucMaterial.getData(IDProposal);
+                    RW_COATING coat = uc.ucCoat.getData(IDProposal, corrosionRate);
+                    RW_MATERIAL ma = uc.ucMaterial.getData(IDProposal, temperature, pressure, stress, corrosion, thickness);
                     RW_INPUT_CA_LEVEL_1 caInput = uc.ucCA.getData(IDProposal);
                     String _tabName = xtraTabData.SelectedTabPage.Text;
                     String componentNumber = _tabName.Substring(0, _tabName.IndexOf("["));
@@ -272,17 +272,17 @@ namespace RBI
                     String apiComName = busApiComponentType.getAPIComponentTypeName(APICompID);
                     UCAssessmentInfo uAssTest = uc.ucAss;
                     RW_ASSESSMENT ass = uAssTest.getData(IDProposal);
-                    RW_EQUIPMENT eq = uc.ucEquipmentTank.getData(IDProposal);
-                    RW_COMPONENT com = uc.ucComponentTank.getData(IDProposal);
+                    RW_EQUIPMENT eq = uc.ucEquipmentTank.getData(IDProposal, temperature, volume);
+                    RW_COMPONENT com = uc.ucComponentTank.getData(IDProposal,diameter,thickness,corrosionRate);
                     RW_STREAM stream = uc.ucStreamTank.getData(IDProposal);
                     RW_EXTCOR_TEMPERATURE extTemp = uc.ucOpera.getDataExtcorTemp(IDProposal);
-                    RW_COATING coat = uc.ucCoat.getData(IDProposal);
-                    RW_MATERIAL ma = uc.ucMaterialTank.getData(IDProposal);
+                    RW_COATING coat = uc.ucCoat.getData(IDProposal, corrosionRate);
+                    RW_MATERIAL ma = uc.ucMaterialTank.getData(IDProposal, temperature, pressure, stress, thickness, corrosion);
                     RW_INPUT_CA_TANK caTank = new RW_INPUT_CA_TANK();
                     RW_INPUT_CA_TANK caTank1 = uc.ucEquipmentTank.getDataforTank(IDProposal);
                     RW_INPUT_CA_TANK caTank2 = uc.ucStreamTank.getDataforTank(IDProposal);
                     RW_INPUT_CA_TANK caTank3 = uc.ucMaterialTank.getDataforTank(IDProposal);
-                    RW_INPUT_CA_TANK caTank4 = uc.ucComponentTank.getDataforTank(IDProposal);
+                    RW_INPUT_CA_TANK caTank4 = uc.ucComponentTank.getDataforTank(IDProposal, diameter);
 
                     caTank = caTank2;
                     caTank.Soil_Type = caTank1.Soil_Type;
@@ -1144,8 +1144,18 @@ namespace RBI
                         }
                         navCA.Enabled = false;
                         checkTank = true;
-                        ucTabTank ucTank = new ucTabTank(IDProposal, new UCAssessmentInfo(IDProposal), new UCEquipmentPropertiesTank(IDProposal, type), new UCComponentPropertiesTank(IDProposal, type), new UCOperatingCondition(IDProposal)
-                            , new UCCoatLiningIsulationCladding(IDProposal), new UCMaterialTank(IDProposal), new UCStreamTank(IDProposal), new UCRiskFactor(IDProposal), new UCRiskSummary(IDProposal), new UCInspectionHistorySubform(IDProposal), new UCDrawGraph(IDProposal));
+                        UCAssessmentInfo assTank = new UCAssessmentInfo(IDProposal);
+                        UCEquipmentPropertiesTank eqTank = new UCEquipmentPropertiesTank(IDProposal, type, temperature, volume);
+                        UCComponentPropertiesTank compTank = new UCComponentPropertiesTank(IDProposal, type, diameter, thickness, corrosionRate);
+                        UCOperatingCondition conTank = new UCOperatingCondition(IDProposal, temperature, pressure, flowRate);
+                        UCCoatLiningIsulationCladding coat = new UCCoatLiningIsulationCladding(IDProposal, corrosionRate);
+                        UCMaterialTank materialTank = new UCMaterialTank(IDProposal, temperature, pressure, stress, thickness, corrosion);
+                        UCStreamTank streamTank = new UCStreamTank(IDProposal);
+                        UCRiskFactor riskFactor = new UCRiskFactor(IDProposal);
+                        UCRiskSummary riskSummary = new UCRiskSummary(IDProposal);
+                        UCDrawGraph drawGraph = new UCDrawGraph(IDProposal);
+                        UCInspectionHistorySubform inspection = new UCInspectionHistorySubform(IDProposal);
+                        ucTabTank ucTank = new ucTabTank(IDProposal, assTank, eqTank, compTank, conTank, coat, materialTank, streamTank, riskFactor, riskSummary, inspection, drawGraph);
                         listUCTank.Add(ucTank);
                         addNewTab(treeListProject.FocusedNode.ParentNode.GetValue(0).ToString() + "[" + treeListProject.FocusedNode.GetValue(0).ToString() + "]", ucTank.ucAss);
                     }
@@ -1235,6 +1245,8 @@ namespace RBI
             if (xtraTabData.SelectedTabPage.Text.Contains('*'))
                 MessageBox.Show("Save file", "Cortek RBI");
             //previousUC.RemoveAt(tabPageIndex);
+            navBarRecord.Visible = false;
+            navBarMainmenu.Expanded = true;
             xtraTabData.SelectedTabPage.Controls.Clear();
             xtraTabData.SelectedTabPage.Dispose();
         }
@@ -1309,7 +1321,7 @@ namespace RBI
                     break;
                 case "UCEquipmentPropertiesTank":
                     UCEquipmentPropertiesTank eq1 = uc as UCEquipmentPropertiesTank;
-                    RW_EQUIPMENT rwEq1 = eq1.getData(ID);
+                    RW_EQUIPMENT rwEq1 = eq1.getData(ID, temperature, volume);
                     busEquipment.edit(rwEq1);
                     break;
                 case "UCComponentProperties":
@@ -1319,22 +1331,22 @@ namespace RBI
                     break;
                 case "UCComponentPropertiesTank":
                     UCComponentPropertiesTank com1 = uc as UCComponentPropertiesTank;
-                    RW_COMPONENT rwCom1 = com1.getData(ID);
+                    RW_COMPONENT rwCom1 = com1.getData(ID, diameter, thickness, corrosionRate);
                     busComponent.edit(rwCom1);
                     break;
                 case "UCMaterial":
                     UCMaterial ma = uc as UCMaterial;
-                    RW_MATERIAL rwMa = ma.getData(ID);
+                    RW_MATERIAL rwMa = ma.getData(ID, temperature, pressure, stress, corrosion, thickness);
                     busMaterial.edit(rwMa);
                     break;
                 case "UCMaterialTank":
                     UCMaterialTank ma1 = uc as UCMaterialTank;
-                    RW_MATERIAL rwMa1 = ma1.getData(ID);
+                    RW_MATERIAL rwMa1 = ma1.getData(ID, temperature, pressure, stress, thickness, corrosion);
                     busMaterial.edit(rwMa1);
                     break;
                 case "UCOperatingCondition":
                     UCOperatingCondition op = uc as UCOperatingCondition;
-                    RW_STREAM rwStream = op.getDataforStream(ID,temperature,pressure, flowRate);
+                    RW_STREAM rwStream = op.getDataforStream(ID, temperature, pressure, flowRate);
                     RW_EXTCOR_TEMPERATURE rwExtr = op.getDataExtcorTemp(ID);
                     busStream.edit(rwStream);
                     busExtcorTemp.edit(rwExtr);

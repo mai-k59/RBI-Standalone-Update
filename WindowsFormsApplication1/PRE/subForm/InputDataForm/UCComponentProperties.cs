@@ -65,7 +65,7 @@ namespace RBI.PRE.subForm.InputDataForm
             additemsCorrectiveAction();
             ShowDatatoControl(ID, diameterUnit, thicknessUnit, corrosionRateUnit);
             lblDiameter.Text = diameterUnit;
-            lblCurrentThickness.Text = lblbNominalThickness.Text = lblMinReqThickness.Text = thicknessUnit;
+            lblCurrentThickness.Text = lblNominalThickness.Text = lblMinReqThickness.Text = thicknessUnit;
             lblCorrosionRate.Text = corrosionRateUnit;
         }
 
@@ -82,29 +82,25 @@ namespace RBI.PRE.subForm.InputDataForm
                     if (diameter == "in") txtNominalDiameter.Text = (comp.NominalDiameter / convUnit.inch).ToString(); // converst mm sang in
                     else if (diameter == "mm") txtNominalDiameter.Text = comp.NominalDiameter.ToString(); // giữ nguyên
                     else txtNominalDiameter.Text = (comp.NominalDiameter/1000).ToString(); // converst mm sang m
-                    //txtNominalThickness.Text = comp.NominalThickness.ToString();
-                    //txtCurrentThickness.Text = comp.CurrentThickness.ToString();
-                    //txtMinRequiredThickness.Text = comp.MinReqThickness.ToString();
                     if (thickness == "mm") 
                     {
-                        txtNominalDiameter.Text = comp.NominalThickness.ToString(); //giữ nguyên
+                        txtNominalThickness.Text = comp.NominalThickness.ToString(); //giữ nguyên
                         txtCurrentThickness.Text = comp.CurrentThickness.ToString();// giữ nguyên
                         txtMinRequiredThickness.Text = comp.MinReqThickness.ToString();//  giữ nguyên
                     }
                     else if (thickness == "in")
                     {
-                        txtNominalDiameter.Text = (comp.NominalThickness / convUnit.inch).ToString(); //converst mm sang in
+                        txtNominalThickness.Text = (comp.NominalThickness / convUnit.inch).ToString(); //converst mm sang in
                         txtCurrentThickness.Text = (comp.CurrentThickness / convUnit.inch).ToString(); //converst mm sang in
                         txtMinRequiredThickness.Text = (comp.MinReqThickness / convUnit.inch).ToString(); //converst mm sang in
                     }
                     else
                     {
-                        txtNominalDiameter.Text = (comp.NominalThickness / 1000).ToString(); // converst mm sang m
+                        txtNominalThickness.Text = (comp.NominalThickness / 1000).ToString(); // converst mm sang m
                         txtCurrentThickness.Text = (comp.CurrentThickness/ 1000).ToString(); // converst mm sang m
                         txtMinRequiredThickness.Text = (comp.MinReqThickness / 1000).ToString(); // converst mm sang m
                     } 
 
-                    //txtCurrentCorrosionRate.Text = comp.CurrentCorrosionRate.ToString();
                     if (corrosionRate == "mm/yr") txtCurrentCorrosionRate.Text = comp.CurrentCorrosionRate.ToString(); // converst mm sang mm
                     else txtCurrentCorrosionRate.Text = (comp.CurrentCorrosionRate/convUnit.mil).ToString(); // converst mm sang mil
 
@@ -196,13 +192,13 @@ namespace RBI.PRE.subForm.InputDataForm
             }
             else if (thickness == "in")
             {
-                comp.NominalThickness = txtNominalThickness.Text != "" ? (float)(double.Parse(txtNominalDiameter.Text) * convUnit.inch) : 0; // in sang mm
+                comp.NominalThickness = txtNominalThickness.Text != "" ? (float)(double.Parse(txtNominalThickness.Text) * convUnit.inch) : 0; // in sang mm
                 comp.CurrentThickness = txtCurrentThickness.Text != "" ? (float)(double.Parse(txtCurrentThickness.Text) * convUnit.inch) : 0; // in sang mm
                 comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? (float)(double.Parse(txtMinRequiredThickness.Text) * convUnit.inch) : 0;// in sang mm
             }
             else
             {
-                comp.NominalThickness = txtNominalThickness.Text != "" ? (float)(double.Parse(txtNominalDiameter.Text) * 1000) : 0; // m sang mm
+                comp.NominalThickness = txtNominalThickness.Text != "" ? (float)(double.Parse(txtNominalThickness.Text) * 1000) : 0; // m sang mm
                 comp.CurrentThickness = txtCurrentThickness.Text != "" ? (float)(double.Parse(txtCurrentThickness.Text) * 1000) : 0; // m sang mm
                 comp.MinReqThickness = txtMinRequiredThickness.Text != "" ? (float)(double.Parse(txtMinRequiredThickness.Text) * 1000) : 0;// m sang mm
             }

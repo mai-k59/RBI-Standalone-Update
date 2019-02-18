@@ -86,7 +86,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblCorrosionRate = new System.Windows.Forms.Label();
             this.lblMinReqThickness = new System.Windows.Forms.Label();
-            this.lblbNominalThickness = new System.Windows.Forms.Label();
+            this.lblNominalThickness = new System.Windows.Forms.Label();
             this.lblCurrentThickness = new System.Windows.Forms.Label();
             this.lblDiameter = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -164,7 +164,7 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.lblCorrosionRate);
             this.groupBox1.Controls.Add(this.lblMinReqThickness);
-            this.groupBox1.Controls.Add(this.lblbNominalThickness);
+            this.groupBox1.Controls.Add(this.lblNominalThickness);
             this.groupBox1.Controls.Add(this.lblCurrentThickness);
             this.groupBox1.Controls.Add(this.lblDiameter);
             this.groupBox1.Controls.Add(this.label12);
@@ -736,15 +736,15 @@
             this.lblMinReqThickness.TabIndex = 0;
             this.lblMinReqThickness.Text = "mm";
             // 
-            // lblbNominalThickness
+            // lblNominalThickness
             // 
-            this.lblbNominalThickness.AutoSize = true;
-            this.lblbNominalThickness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbNominalThickness.Location = new System.Drawing.Point(730, 26);
-            this.lblbNominalThickness.Name = "lblbNominalThickness";
-            this.lblbNominalThickness.Size = new System.Drawing.Size(29, 15);
-            this.lblbNominalThickness.TabIndex = 0;
-            this.lblbNominalThickness.Text = "mm";
+            this.lblNominalThickness.AutoSize = true;
+            this.lblNominalThickness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNominalThickness.Location = new System.Drawing.Point(730, 26);
+            this.lblNominalThickness.Name = "lblNominalThickness";
+            this.lblNominalThickness.Size = new System.Drawing.Size(29, 15);
+            this.lblNominalThickness.TabIndex = 0;
+            this.lblNominalThickness.Text = "mm";
             // 
             // lblCurrentThickness
             // 
@@ -877,7 +877,7 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblCorrosionRate;
         private System.Windows.Forms.Label lblMinReqThickness;
-        private System.Windows.Forms.Label lblbNominalThickness;
+        private System.Windows.Forms.Label lblNominalThickness;
         private System.Windows.Forms.Label lblCurrentThickness;
         private System.Windows.Forms.Label lblDiameter;
         private System.Windows.Forms.Label lb7;

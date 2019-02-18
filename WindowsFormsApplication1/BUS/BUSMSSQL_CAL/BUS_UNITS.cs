@@ -9,6 +9,7 @@ namespace RBI.BUS.BUSMSSQL_CAL
     class BUS_UNITS
     {
         public double NpM2 = 0.00014503773773; // mặc định psi
+        public double meter = 1000;
         public double NpCM2 = 1.4503773773; // psi
         public double MPa = 145.03773773; // psi áp suất
         public double bar = 14.503773773; // psi áp suất

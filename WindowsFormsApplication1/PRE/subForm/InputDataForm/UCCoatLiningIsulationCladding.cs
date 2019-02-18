@@ -10,29 +10,23 @@ using System.Windows.Forms;
 using RBI.Object.ObjectMSSQL;
 using RBI.BUS.BUSMSSQL;
 using RBI.Object;
+using RBI.BUS.BUSMSSQL_CAL;
 namespace RBI.PRE.subForm.InputDataForm
 {
     public partial class UCCoatLiningIsulationCladding : UserControl
-    {
-        public UCCoatLiningIsulationCladding()
-        {
-            InitializeComponent();
-        }
-        public UCCoatLiningIsulationCladding(int ID)
-        {
-            InitializeComponent();
-            ShowDatatoControl(ID);
-        }
+    {       
         public UCCoatLiningIsulationCladding(int ID, string corrosionRateUnit)
         {
             InitializeComponent();
-            ShowDatatoControl(ID);
+            ShowDatatoControl(ID, corrosionRateUnit);
             lblCorrosionRate.Text = corrosionRateUnit;
         }
-        public void ShowDatatoControl(int ID)
+
+        public void ShowDatatoControl(int ID, string corrosionRate)
         {
             RW_COATING_BUS BUS = new RW_COATING_BUS();
             RW_COATING coat = BUS.getData(ID);
+            BUS_UNITS convUnit = new BUS_UNITS();
             String[] extQuality = { "No coating or poor quality", "Medium coating quality", "High coating quality" };
             String[] inType = { "Organic", "Castable refractory", "Strip lined alloy", "Castable refractory severe condition", "Glass lined", "Acid Brick", "Fibreglass" };
             String[] inCon = { "Good", "Average", "Poor", "Unknown" };
@@ -105,7 +99,8 @@ namespace RBI.PRE.subForm.InputDataForm
                 }
             }
 
-            txtCladdingCorrosionRate.Text = coat.CladdingCorrosionRate.ToString();
+            if (corrosionRate == "mm/yr") txtCladdingCorrosionRate.Text = coat.CladdingCorrosionRate.ToString();
+            else txtCladdingCorrosionRate.Text = (coat.CladdingCorrosionRate / convUnit.mil).ToString();
 
             if (coat.SupportConfigNotAllowCoatingMaint == 1)
                 chkSupport.Checked = true;
@@ -121,9 +116,11 @@ namespace RBI.PRE.subForm.InputDataForm
                 }
             }
         }
-        public RW_COATING getData(int ID)
+
+        public RW_COATING getData(int ID, string corrosionRate)
         {
             RW_COATING coat = new RW_COATING();
+            BUS_UNITS convUnit = new BUS_UNITS();
             coat.ID = ID;
             coat.ExternalCoating = chkExternalCoat.Checked ? 1 : 0;
             coat.ExternalInsulation = chkExternalIsulation.Checked ? 1 : 0;
@@ -136,55 +133,12 @@ namespace RBI.PRE.subForm.InputDataForm
             coat.InternalLinerCondition = cbInternalLinerCondition.Text;
             coat.InsulationContainsChloride = chkInsulationContainsChlorides.Checked ? 1 : 0;
             coat.InternalLinerType = cbInternalLinerType.Text;
-            coat.CladdingCorrosionRate = txtCladdingCorrosionRate.Text == "" ? 0 : float.Parse(txtCladdingCorrosionRate.Text);
+            if (corrosionRate == "mm/yr") coat.CladdingCorrosionRate = txtCladdingCorrosionRate.Text == "" ? 0 : float.Parse(txtCladdingCorrosionRate.Text);
+            else coat.CladdingCorrosionRate = txtCladdingCorrosionRate.Text == "" ? 0 : (float.Parse(txtCladdingCorrosionRate.Text) * (float)convUnit.mil);
             coat.SupportConfigNotAllowCoatingMaint = chkSupport.Checked ? 1 : 0;
             coat.InsulationCondition = cbIsulationCondition.Text;
             return coat;
         }
-
-        private void chkInternalLining_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkInternalLining.Checked)
-            {
-                cbInternalLinerType.Enabled = true;
-                cbInternalLinerCondition.Enabled = true;
-            }
-            else
-            {
-                cbInternalLinerType.Enabled = false;
-                cbInternalLinerCondition.Enabled = false;
-            }
-        }
-
-        private void chkExternalIsulation_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkExternalIsulation.Checked)
-            {
-                cbIsulationCondition.Enabled = true;
-                cbExternalIsulation.Enabled = true;
-            }
-            else
-            {
-                cbIsulationCondition.Enabled = false;
-                cbExternalIsulation.Enabled = false;
-            }
-        }
-
-        private void chkExternalCoat_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkExternalCoat.Checked)
-            {
-                cbExternalCoatQuality.Enabled = true;
-                dateExternalCoating.Enabled = true;
-            }
-            else
-            {
-                cbExternalCoatQuality.Enabled = false;
-                dateExternalCoating.Enabled = false;
-            }
-        }
-
-        
 
 
         #region Xu ly su kien Data thay doi
@@ -223,13 +177,7 @@ namespace RBI.PRE.subForm.InputDataForm
                 DataChanged(this, e);
         }
         #endregion
-        private void KeyPress1(KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.S)
-            {
-                CtrlSPress++;
-            }
-        }
+        
         private void txtCladdingCorrosionRate_KeyPress(object sender, KeyPressEventArgs e)
         {
             string a = txtCladdingCorrosionRate.Text;
@@ -249,23 +197,37 @@ namespace RBI.PRE.subForm.InputDataForm
             if(sender is CheckBox)
             {
                 CheckBox chk = sender as CheckBox;
-                cbExternalCoatQuality.Enabled = dateExternalCoating.Enabled = (chk.Name == "chkExternalCoat" && chk.Checked) ? true : false;
-                cbInternalLinerType.Enabled = cbInternalLinerCondition.Enabled = (chk.Name == "chkInternalLining" && chk.Checked) ? true : false;
+                switch(chk.Name)
+                {
+                    case "chkExternalCoat":
+                        dateExternalCoating.Enabled = cbExternalCoatQuality.Enabled = chk.Checked ? true : false;
+                        break;
+                    case "chkInternalLining":
+                        cbInternalLinerType.Enabled = cbInternalLinerCondition.Enabled = chk.Checked ? true : false;
+                        break;
+                    case "chkExternalIsulation":
+                        cbExternalIsulation.Enabled = cbIsulationCondition.Enabled = chk.Checked ? true : false;
+                        break;
+                    default:
+                        break;
+
+                }
             }
-            //if(sender is TextBox)
-            //{
-            //    TextBox txt = sender as TextBox;
-            //    double a = double.Parse(txt.Text);
-            //    if (a < float.MinValue || a > float.MaxValue)
-            //        MessageBox.Show("Invalid value", "Cortek RBI", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            if(sender is TextBox)
+            {
+                TextBox txt = sender as TextBox;
+                double a = double.Parse(txt.Text);
+                if (a < float.MinValue || a > float.MaxValue)
+                    MessageBox.Show("Invalid value", "Cortek RBI", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void chkInternalCoat_KeyDown(object sender, KeyEventArgs e)
         {
-            KeyPress1(e);
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                CtrlSPress++;
+            }
         }
-
-       
     }
 }

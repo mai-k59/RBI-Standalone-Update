@@ -605,14 +605,13 @@
             // 
             this.btnUnitSeting.Caption = "Units";
             this.btnUnitSeting.Id = 22;
-            this.btnUnitSeting.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnUnitSeting.ImageOptions.Image")));
             this.btnUnitSeting.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnUnitSeting.ImageOptions.LargeImage")));
             this.btnUnitSeting.Name = "btnUnitSeting";
             this.btnUnitSeting.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnUnitSeting_ItemClick);
             // 
             // btnAssessmentMethod
             // 
-            this.btnAssessmentMethod.Caption = "AssessmentMethod";
+            this.btnAssessmentMethod.Caption = "Assessment Method";
             this.btnAssessmentMethod.Id = 23;
             this.btnAssessmentMethod.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnAssessmentMethod.ImageOptions.LargeImage")));
             this.btnAssessmentMethod.Name = "btnAssessmentMethod";

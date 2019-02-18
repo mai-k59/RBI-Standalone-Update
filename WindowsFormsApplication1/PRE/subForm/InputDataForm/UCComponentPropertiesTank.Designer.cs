@@ -60,11 +60,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblCorrosionRate = new System.Windows.Forms.Label();
+            this.lblMinReqThickness = new System.Windows.Forms.Label();
+            this.lblNominalThickness = new System.Windows.Forms.Label();
+            this.lblCurrentThickness = new System.Windows.Forms.Label();
+            this.lblDiameter = new System.Windows.Forms.Label();
             this.lb7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -107,11 +107,11 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.lblCorrosionRate);
+            this.groupBox1.Controls.Add(this.lblMinReqThickness);
+            this.groupBox1.Controls.Add(this.lblNominalThickness);
+            this.groupBox1.Controls.Add(this.lblCurrentThickness);
+            this.groupBox1.Controls.Add(this.lblDiameter);
             this.groupBox1.Controls.Add(this.lb7);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label1);
@@ -438,55 +438,55 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "m";
             // 
-            // label9
+            // lblCorrosionRate
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(362, 72);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(41, 15);
-            this.label9.TabIndex = 0;
-            this.label9.Text = "mm/yr";
+            this.lblCorrosionRate.AutoSize = true;
+            this.lblCorrosionRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCorrosionRate.Location = new System.Drawing.Point(362, 72);
+            this.lblCorrosionRate.Name = "lblCorrosionRate";
+            this.lblCorrosionRate.Size = new System.Drawing.Size(41, 15);
+            this.lblCorrosionRate.TabIndex = 0;
+            this.lblCorrosionRate.Text = "mm/yr";
             // 
-            // label14
+            // lblMinReqThickness
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(742, 47);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 15);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "mm";
+            this.lblMinReqThickness.AutoSize = true;
+            this.lblMinReqThickness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMinReqThickness.Location = new System.Drawing.Point(742, 47);
+            this.lblMinReqThickness.Name = "lblMinReqThickness";
+            this.lblMinReqThickness.Size = new System.Drawing.Size(29, 15);
+            this.lblMinReqThickness.TabIndex = 0;
+            this.lblMinReqThickness.Text = "mm";
             // 
-            // label13
+            // lblNominalThickness
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(742, 23);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(29, 15);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "mm";
+            this.lblNominalThickness.AutoSize = true;
+            this.lblNominalThickness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNominalThickness.Location = new System.Drawing.Point(742, 23);
+            this.lblNominalThickness.Name = "lblNominalThickness";
+            this.lblNominalThickness.Size = new System.Drawing.Size(29, 15);
+            this.lblNominalThickness.TabIndex = 0;
+            this.lblNominalThickness.Text = "mm";
             // 
-            // label8
+            // lblCurrentThickness
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(362, 49);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 15);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "mm";
+            this.lblCurrentThickness.AutoSize = true;
+            this.lblCurrentThickness.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentThickness.Location = new System.Drawing.Point(362, 49);
+            this.lblCurrentThickness.Name = "lblCurrentThickness";
+            this.lblCurrentThickness.Size = new System.Drawing.Size(29, 15);
+            this.lblCurrentThickness.TabIndex = 0;
+            this.lblCurrentThickness.Text = "mm";
             // 
-            // label7
+            // lblDiameter
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(362, 24);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "in";
+            this.lblDiameter.AutoSize = true;
+            this.lblDiameter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiameter.Location = new System.Drawing.Point(362, 24);
+            this.lblDiameter.Name = "lblDiameter";
+            this.lblDiameter.Size = new System.Drawing.Size(17, 15);
+            this.lblDiameter.TabIndex = 0;
+            this.lblDiameter.Text = "in";
             // 
             // lb7
             // 
@@ -568,11 +568,11 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblCorrosionRate;
+        private System.Windows.Forms.Label lblMinReqThickness;
+        private System.Windows.Forms.Label lblNominalThickness;
+        private System.Windows.Forms.Label lblCurrentThickness;
+        private System.Windows.Forms.Label lblDiameter;
         private System.Windows.Forms.Label lb7;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox chkConcreteAsphalt;

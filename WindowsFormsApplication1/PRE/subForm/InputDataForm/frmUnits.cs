@@ -45,7 +45,7 @@ namespace RBI.PRE.subForm.InputDataForm
                 }
                 else if (obj.UnitName == "Stress")
                 {
-                    if (obj.SelectedUnit == "KSI") rbtnPressureKSI.Checked = true;
+                    if (obj.SelectedUnit == "KSI") rbtnStressKSI.Checked = true;
                     else if (obj.SelectedUnit == "bar") rbtnStressBAR.Checked = true;
                     else if (obj.SelectedUnit == "psi") rbtnStressPSI.Checked = true;
                     else if (obj.SelectedUnit == "N/cm2") rbtnStressNpcm2.Checked = true;
