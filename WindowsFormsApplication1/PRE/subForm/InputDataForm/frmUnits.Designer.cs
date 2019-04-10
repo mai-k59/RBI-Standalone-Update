@@ -33,11 +33,6 @@
             this.groupControl7 = new DevExpress.XtraEditors.GroupControl();
             this.rbtnCrMMperYr = new System.Windows.Forms.RadioButton();
             this.rbtnCrMilPerYr = new System.Windows.Forms.RadioButton();
-            this.groupControl8 = new DevExpress.XtraEditors.GroupControl();
-            this.btnEdit = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.cbFinaUnit = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.btnAddUnit = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl9 = new DevExpress.XtraEditors.GroupControl();
             this.rbtnStressNpcm2 = new System.Windows.Forms.RadioButton();
             this.rbtnStressNpm2 = new System.Windows.Forms.RadioButton();
@@ -83,9 +78,6 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).BeginInit();
             this.groupControl7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).BeginInit();
-            this.groupControl8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbFinaUnit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).BeginInit();
             this.groupControl9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl10)).BeginInit();
@@ -164,64 +156,6 @@
             this.rbtnCrMilPerYr.TabStop = true;
             this.rbtnCrMilPerYr.Text = "mil/yr";
             this.rbtnCrMilPerYr.UseVisualStyleBackColor = true;
-            // 
-            // groupControl8
-            // 
-            this.groupControl8.Controls.Add(this.btnEdit);
-            this.groupControl8.Controls.Add(this.labelControl3);
-            this.groupControl8.Controls.Add(this.cbFinaUnit);
-            this.groupControl8.Controls.Add(this.btnAddUnit);
-            this.groupControl8.Location = new System.Drawing.Point(12, 489);
-            this.groupControl8.Name = "groupControl8";
-            this.groupControl8.Size = new System.Drawing.Size(359, 60);
-            this.groupControl8.TabIndex = 27;
-            this.groupControl8.Text = "Finance";
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Appearance.Options.UseFont = true;
-            this.btnEdit.Location = new System.Drawing.Point(311, 23);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(37, 23);
-            this.btnEdit.TabIndex = 14;
-            this.btnEdit.Text = "Edit";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(5, 24);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(138, 16);
-            this.labelControl3.TabIndex = 12;
-            this.labelControl3.Text = "Select your finacial unit:";
-            // 
-            // cbFinaUnit
-            // 
-            this.cbFinaUnit.Location = new System.Drawing.Point(149, 24);
-            this.cbFinaUnit.Name = "cbFinaUnit";
-            this.cbFinaUnit.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFinaUnit.Properties.Appearance.Options.UseFont = true;
-            this.cbFinaUnit.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cbFinaUnit.Properties.Items.AddRange(new object[] {
-            "USD",
-            "VND",
-            "Euro"});
-            this.cbFinaUnit.Size = new System.Drawing.Size(90, 22);
-            this.cbFinaUnit.TabIndex = 8;
-            // 
-            // btnAddUnit
-            // 
-            this.btnAddUnit.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddUnit.Appearance.Options.UseFont = true;
-            this.btnAddUnit.Location = new System.Drawing.Point(247, 24);
-            this.btnAddUnit.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Office2003;
-            this.btnAddUnit.Name = "btnAddUnit";
-            this.btnAddUnit.Size = new System.Drawing.Size(58, 23);
-            this.btnAddUnit.TabIndex = 13;
-            this.btnAddUnit.Text = "Add Unit";
             // 
             // groupControl9
             // 
@@ -696,17 +630,18 @@
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(296, 572);
+            this.btnCancel.Location = new System.Drawing.Point(290, 531);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
             this.btnOK.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Appearance.Options.UseFont = true;
-            this.btnOK.Location = new System.Drawing.Point(215, 572);
+            this.btnOK.Location = new System.Drawing.Point(198, 531);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 14;
@@ -731,9 +666,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(389, 611);
+            this.ClientSize = new System.Drawing.Size(389, 566);
             this.Controls.Add(this.groupControl7);
-            this.Controls.Add(this.groupControl8);
             this.Controls.Add(this.groupControl9);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupControl10);
@@ -754,10 +688,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl7)).EndInit();
             this.groupControl7.ResumeLayout(false);
             this.groupControl7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl8)).EndInit();
-            this.groupControl8.ResumeLayout(false);
-            this.groupControl8.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cbFinaUnit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl9)).EndInit();
             this.groupControl9.ResumeLayout(false);
             this.groupControl9.PerformLayout();
@@ -798,11 +728,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl7;
         private System.Windows.Forms.RadioButton rbtnCrMMperYr;
         private System.Windows.Forms.RadioButton rbtnCrMilPerYr;
-        private DevExpress.XtraEditors.GroupControl groupControl8;
-        private DevExpress.XtraEditors.SimpleButton btnEdit;
-        private DevExpress.XtraEditors.SimpleButton btnAddUnit;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.ComboBoxEdit cbFinaUnit;
         private DevExpress.XtraEditors.GroupControl groupControl9;
         private System.Windows.Forms.RadioButton rbtnStressNpcm2;
         private System.Windows.Forms.RadioButton rbtnStressNpm2;

@@ -1245,7 +1245,7 @@ namespace RBI
             if (xtraTabData.SelectedTabPage.Text.Contains('*'))
                 MessageBox.Show("Save file", "Cortek RBI");
             //previousUC.RemoveAt(tabPageIndex);
-            navBarRecord.Visible = false;
+            navBarRecord.Visible = false; // Thao
             navBarMainmenu.Expanded = true;
             xtraTabData.SelectedTabPage.Controls.Clear();
             xtraTabData.SelectedTabPage.Dispose();
@@ -1259,6 +1259,16 @@ namespace RBI
                 tabPageIndex = xtraTabData.SelectedTabPageIndex - 1;
                 int eqID = busAssessment.getEquipmentID(id_proposal);
                 int eqTypeID = busEquipmentMaster.getEqTypeID(eqID);
+                navBarRecord.Visible = true; //mai // Hien thi navbar
+                // set mau cac thuoc tinh ve mau den mac dinh
+                navAssessmentInfo.Appearance.ForeColor = navEquipment.Appearance.ForeColor = 
+                    navComponent.Appearance.ForeColor = navOperating.Appearance.ForeColor = 
+                    navMaterial.Appearance.ForeColor = navCoating.Appearance.ForeColor = 
+                    navNoInspection.Appearance.ForeColor = navStream.Appearance.ForeColor = 
+                    navRiskFactor.Appearance.ForeColor = navCA.Appearance.ForeColor = 
+                    navRiskSummary.Appearance.ForeColor =
+                    navViewGraph.Appearance.ForeColor = Color.Black;
+                // end mai
                 switch (eqTypeID)
                 {
                     case 10: //tank
@@ -2459,19 +2469,7 @@ namespace RBI
                         
                         break;
                 }
-                //u.AutoScroll = true;
-                //xtraTabData.TabPages.TabControl.SelectedTabPage.Focus();
-                //VScrollBar v = new VScrollBar();
-                //v.Dock = DockStyle.Right;
-                //v.Maximum = u.Height - xtraTabData.Height;
-                //Console.WriteLine("chieu cao " + v.Maximum);
-                //xtraTabData.TabPages.TabControl.SelectedTabPage.Controls.Add(v);
-
-                //xtraTabData.TabPages.TabControl.SelectedTabPage;
-
-                //xtraTabData.TabPages.TabControl.SelectedTabPage.AutoScroll = true;
-                //xtraTabData.TabPages.TabControl.SelectedTabPage.AutoScrollMargin = new System.Drawing.Size(80, 80);
-                //xtraTabData.TabPages.TabControl.SelectedTabPage.AutoScrollMinSize = new Size(xtraTabData.TabPages.TabControl.SelectedTabPage.Width, xtraTabData.TabPages.TabControl.SelectedTabPage.Height);
+                
             }
         }
 
@@ -3395,103 +3393,7 @@ namespace RBI
         private List<UNITS> listUnit = new List<UNITS>();
         UNITS_BUS busUnit = new UNITS_BUS();
         #endregion
-
-        /*private void CtrlS_Press(object sender, CtrlSPressEventArgs e)
-        {
-            int ID = Convert.ToInt32(xtraTabData.SelectedTabPage.Name);
-            string str = xtraTabData.SelectedTabPage.Text;
-            if (str.Contains("*"))
-            {
-                Control.ControlCollection ct = xtraTabData.SelectedTabPage.Controls;
-                foreach (Control c in ct)
-                {
-                    if (c is UCAssessmentInfo)
-                    {
-                        CtrlSPress_SaveData(c.Name, ID, c);
-                        initDataforTreeList();
-                        int[] comID = busAssessment.getEquipmentID_ComponentID(ID);
-                        string comNum = busComponent.GetComponentNumber(comID[1]);
-                        string assName = busAssessment.getAssessmentName(ID);
-                        xtraTabData.SelectedTabPage.Text = comNum + "[" + assName + "]";
-                    }
-                    CtrlSPress_SaveData(c.Name, ID, c);
-                    // barStaticItem2.Caption = "Saved";
-                }
-                xtraTabData.SelectedTabPage.Text = str.Remove(str.Length - 1); //luu data va bo dau *
-            }
-        } */
-
-        /*private void CtrlSPress_SaveData(string ucName, int ID, object uc)
-        {
-            switch (ucName)
-            {
-                case "UCAssessmentInfo":
-                    UCAssessmentInfo ass = uc as UCAssessmentInfo;
-                    RW_ASSESSMENT rwAss = ass.getData(ID);
-                    busAssessment.edit(rwAss);
-                    break;
-                case "UCEquipmentProperties":
-                    UCEquipmentProperties eq = uc as UCEquipmentProperties;
-                    RW_EQUIPMENT rwEq = eq.getData(ID, temperature, volume);
-                    busEquipment.edit(rwEq);
-                    break;
-                case "UCEquipmentPropertiesTank":
-                    UCEquipmentPropertiesTank eq1 = uc as UCEquipmentPropertiesTank;
-                    RW_EQUIPMENT rwEq1 = eq1.getData(ID);
-                    busEquipment.edit(rwEq1);
-                    break;
-                case "UCComponentProperties":
-                    UCComponentProperties com = uc as UCComponentProperties;
-                    RW_COMPONENT rwCom = com.getData(ID);
-                    busComponent.edit(rwCom);
-                    break;
-                case "UCComponentPropertiesTank":
-                    UCComponentPropertiesTank com1 = uc as UCComponentPropertiesTank;
-                    RW_COMPONENT rwCom1 = com1.getData(ID);
-                    busComponent.edit(rwCom1);
-                    break;
-                case "UCMaterial":
-                    UCMaterial ma = uc as UCMaterial;
-                    RW_MATERIAL rwMa = ma.getData(ID);
-                    busMaterial.edit(rwMa);
-                    break;
-                case "UCMaterialTank":
-                    UCMaterialTank ma1 = uc as UCMaterialTank;
-                    RW_MATERIAL rwMa1 = ma1.getData(ID);
-                    busMaterial.edit(rwMa1);
-                    break;
-                case "UCOperatingCondition":
-                    UCOperatingCondition op = uc as UCOperatingCondition;
-                    RW_STREAM rwStream = op.getDataforStream(ID);
-                    RW_EXTCOR_TEMPERATURE rwExtr = op.getDataExtcorTemp(ID);
-                    busStream.edit(rwStream);
-                    busExtcorTemp.edit(rwExtr);
-                    break;
-                case "UCStream":
-                    UCStream stream1 = uc as UCStream;
-                    RW_STREAM rwStream1 = stream1.getData(ID);
-                    busStream.edit(rwStream1);
-                    break;
-                case "UCStreamTank":
-                    UCStreamTank stream = uc as UCStreamTank;
-                    RW_STREAM rwStream2 = stream.getData(ID);
-                    busStream.edit(rwStream2);
-                    break;
-                case "UCCA":
-                    UCCA ca = uc as UCCA;
-                    RW_INPUT_CA_LEVEL_1 rwCA = ca.getData(ID);
-                    busInputCALevel1.edit(rwCA);
-                    break;
-                default:
-                    break;
-            }
-        } */
-        /* private void ThayDoiDuLieu(object sender, DataUCChangedEventArgs e)
-        {
-            string str = xtraTabData.SelectedTabPage.Text;
-            if (str.Contains("*")) return;
-               xtraTabData.SelectedTabPage.Text += "*";
-        } */
+      
         private void xtraTabData_KeyPress(object sender, KeyPressEventArgs e)
         {
             Console.WriteLine("Press");

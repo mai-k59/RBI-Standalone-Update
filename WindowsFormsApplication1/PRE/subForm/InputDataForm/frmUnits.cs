@@ -102,12 +102,12 @@ namespace RBI.PRE.subForm.InputDataForm
                     else if (obj.SelectedUnit == "US") cbScheme.SelectedIndex = 1;
                     else if (obj.SelectedUnit == "Custom") cbScheme.SelectedIndex = 0;
                 }
-                else if (obj.UnitName == "FinacialUnit")
-                {
-                    if (obj.SelectedUnit == "USD") cbFinaUnit.SelectedIndex = 0;
-                    else if (obj.SelectedUnit == "VND") cbFinaUnit.SelectedIndex = 1;
-                    else if (obj.SelectedUnit == "Euro") cbFinaUnit.SelectedIndex = 2;
-                }
+                //else if (obj.UnitName == "FinacialUnit")
+                //{
+                //    if (obj.SelectedUnit == "USD") cbFinaUnit.SelectedIndex = 0;
+                //    else if (obj.SelectedUnit == "VND") cbFinaUnit.SelectedIndex = 1;
+                //    else if (obj.SelectedUnit == "Euro") cbFinaUnit.SelectedIndex = 2;
+                //}
             }
         }
         #region parameter
@@ -264,7 +264,7 @@ namespace RBI.PRE.subForm.InputDataForm
             listUnit.Add(corrosionRate);
             #endregion
             #region set finacial Unit
-            finacialUnit = cbFinaUnit.SelectedText;
+            //finacialUnit = cbFinaUnit.SelectedText;
             Console.WriteLine(finacialUnit);
             listUnit.Add(finacialUnit);
             #endregion
@@ -288,5 +288,6 @@ namespace RBI.PRE.subForm.InputDataForm
             DialogResult dr = MessageBox.Show("The changed setting is not save. Do you want exit?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.OK) this.Close();
         }
+
     }
 }
