@@ -605,6 +605,7 @@
             "European"});
             this.cbScheme.Size = new System.Drawing.Size(114, 22);
             this.cbScheme.TabIndex = 19;
+            this.cbScheme.SelectedIndexChanged += new System.EventHandler(this.cbScheme_SelectedIndexChanged);
             // 
             // labelControl2
             // 

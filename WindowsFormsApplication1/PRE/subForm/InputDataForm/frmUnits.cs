@@ -288,6 +288,5 @@ namespace RBI.PRE.subForm.InputDataForm
             DialogResult dr = MessageBox.Show("The changed setting is not save. Do you want exit?", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (dr == DialogResult.OK) this.Close();
         }
-
     }
 }
